@@ -30,7 +30,7 @@ GO
 create table tb_itens_vendidos(
        id_itens_vendidos int PRIMARY KEY identity(1,1),
        id_produto int not null,
-       id_hardware int not null,
+       id_hardware int null,
        qtde_item int not null,
        pco_vda decimal(8,2) not null)
 GO
@@ -70,9 +70,35 @@ alter table tb_itens_vendidos
 insert into tb_clientes (nome, endereco, idade, sexo, fone, email) values
 	('André','Rua Sebastiao de assuncao',20,'M','(11)9999-9999','email@hotmail.com'),
 	('Anderson','Diamante negro',30,'M','(11)8888-7777','gmail.@gmailcom'),
-	('Patrique','Serra de Bragança',15,'M','(11)1111-2222','teuemail@gmail.com');
+	('Patrique','Serra de Bragança',15,'M','(11)1111-2222','teuemail@gmail.com'),
+	('Amanda','Itaipu',20,'F','(11)4444-6666','teste@hotmail.com');
 	go
 	
 select *from tb_clientes 
 
+go
+insert into tb_produtos (descricao, preco_unit, qtde_atual, qtde_minima) values
+	('Pen drive','35','20','10'),
+	('memoria ram', '320','50','20'),
+	('mouse','100','60','10');
+	go
+select *from tb_produtos
+go
+
+go
+ insert into tb_itens_vendidos(id_produto,qtde_item,pco_vda) values
+	('1','200','20'),
+	('3','50','60'),
+	('1','500','18');
+	go
+select *from tb_produtos
+go
+
+go
+insert into tb_vendas (id_cliente,id_itens_vendidos,data,desconto) values
+	('1','1','2010-10-10','10'),
+	('3','1','2011-02-10','8'),
+	('4','3','2012-01-03','5');
+	go
+	select *from tb_vendas
 go
