@@ -15,7 +15,7 @@ create table tb_vendas(
        id_venda int primary key IDENTITY(1,1),
        id_cliente int not null,
 	   id_itens_vendidos int not null,
-       data date not null,
+       data date,
        desconto decimal(2,2))
 GO
 create table tb_clientes(
@@ -95,10 +95,22 @@ select *from tb_produtos
 go
 
 go
-insert into tb_vendas (id_cliente,id_itens_vendidos,data,desconto) values
-	('1','1','2010-10-10','10'),
-	('3','1','2011-02-10','8'),
-	('4','3','2012-01-03','5');
+insert into tb_vendas (id_cliente,id_itens_vendidos) values
+	('1','1'),
+	('3','1'),
+	('4','3');
 	go
 	select *from tb_vendas
+go
+
+select c.nome, v.id_venda, v.id_itens_vendidos from tb_clientes as c  INNER JOIN tb_vendas as v
+on c.id_cliente = v.id_cliente;
+go
+
+select c.nome, v.id_venda, v.id_itens_vendidos from tb_clientes as c  LEFT JOIN tb_vendas as v
+on c.id_cliente = v.id_cliente where v.id_venda is NULL;
+go
+
+select p.descricao,p.id_produto, v.id_itens_vendidos, v.id_itens_vendidos from tb_produtos as p  LEFT JOIN tb_itens_vendidos as v
+on p.id_produto = v.id_produto where v.id_produto is NULL;
 go
